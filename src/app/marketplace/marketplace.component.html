@@ -1,0 +1,22 @@
+<h2 class="centered">Marketplace</h2>
+<hr>
+
+<clr-datagrid>
+  <clr-dg-column *ngIf="currentRoute === '/admin'">Edit</clr-dg-column>
+  <clr-dg-column>Artist</clr-dg-column>
+  <clr-dg-column>Title</clr-dg-column>
+  <clr-dg-column *ngIf="currentRoute === '/admin'">Description  </clr-dg-column>
+      <clr-dg-row *clrDgItems="let album of albums | async" >
+
+
+      <clr-dg-cell *ngIf="currentRoute === '/admin'">
+      <app-edit-album [selectedAlbum]="album"></app-edit-album>
+      </clr-dg-cell>
+      <clr-dg-cell class="artistStyle" (click)="goToDetailPage(album)" >{{album.artist}}</clr-dg-cell>
+      <clr-dg-cell class="titleStyle">{{album.title}}</clr-dg-cell>
+      <clr-dg-cell *ngIf="currentRoute === '/admin'">
+      {{album.description}}
+      </clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>
